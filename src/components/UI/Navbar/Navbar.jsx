@@ -5,6 +5,12 @@ import MyButton from "../Buttons/MyButton";
 
 const Navbar = () => {
     const {isUserAuth, setIsUserAuth} = useContext(AuthContext);
+
+    const logout = () => {
+        setIsUserAuth(false);
+        localStorage.removeItem('auth');
+    };
+
     return (
         <div className="navbar">
             <Link className={'nb-link'} to={'/about'}>
@@ -15,7 +21,7 @@ const Navbar = () => {
             </Link>
             {isUserAuth &&
                 <div className={'nb-btn-div'}>
-                    <MyButton onClick={() => setIsUserAuth(false)}>
+                    <MyButton onClick={() => logout()}>
                         Log out
                     </MyButton>
                 </div>

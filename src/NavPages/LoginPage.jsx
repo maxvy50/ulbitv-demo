@@ -10,6 +10,7 @@ const LoginPage = () => {
     const login = e => {
         e.preventDefault();
         setIsUserAuth(true);
+        localStorage.setItem('auth', 'true');
         router.push('/posts');
     };
 
