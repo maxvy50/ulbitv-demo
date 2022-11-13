@@ -27,30 +27,29 @@ const PostIdPage = () => {
         // eslint-disable-next-line
     }, []);
 
+    if (!isPostLoaded) {
+        return <Loader/>;
+    }
+
     return (
         <div>
-            {isPostLoaded
+            <h1>Post #{post.id}</h1>
+            <div>
+                <strong>{post.title}</strong>
+                <div>{post.body}</div>
+            </div>
+            {isCommentsLoaded
                 ?
                 <div>
-                    <h1>Post #{post.id}</h1>
+                    <h1>Comments</h1>
                     <div>
-                        <strong>{post.title}</strong>
-                        <div>{post.body}</div>
-                    </div>
-                    {isCommentsLoaded
-                        ?
-                        <div>
-                            <h1>Comments</h1>
-                            <div>
-                                {comments.map(c =>
-                                    <div key={c.id}>
-                                        <strong>{c.email}</strong>
-                                        <div>{c.body}</div>
-                                    </div>
-                                )}
+                        {comments.map(c =>
+                            <div key={c.id}>
+                                <strong>{c.email}</strong>
+                                <div>{c.body}</div>
                             </div>
-                        </div>
-                        : <Loader/>}
+                        )}
+                    </div>
                 </div>
                 : <Loader/>
             }
